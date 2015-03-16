@@ -21,7 +21,7 @@ public class ExamenTwitter {
     public static void main(String[] args) throws TwitterException {
         FuncionesTwitter objetoDePrueba = new FuncionesTwitter();
         
-        objetoDePrueba.loguearse();
+   
         objetoDePrueba.buscarTuit();
         objetoDePrueba.postearTuit();
         objetoDePrueba.mostrarLineaTiempo();

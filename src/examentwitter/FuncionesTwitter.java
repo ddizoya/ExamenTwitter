@@ -21,31 +21,31 @@ import twitter4j.conf.ConfigurationBuilder;
  * @author ddizoya
  */
 public class FuncionesTwitter {
-    
+
+    public FuncionesTwitter() {
+        String fichero = "twitter4j.properties";
+    }
+
+    public FuncionesTwitter(Twitter twitter) {
+        this.twitter = twitter;
+    }
+
     /**
-     * Atributo twitter, para emplearlo en los métodos. 
+     * Atributo twitter, para emplearlo en los métodos.
      */
     public Twitter twitter;
-    
+
     /**
-     * Método inicial para loguearse. Es necesario iniciarlo para que el código vaya.
-     * @throws TwitterException Clase propia de excepciones de Twitter. 
+     * Método inicial para loguearse. Es necesario iniciarlo para que el código
+     * vaya.
+     *
+     * @throws TwitterException Clase propia de excepciones de Twitter.
      */
-    public void loguearse() throws TwitterException {
-        
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        cb.setOAuthAuthenticationURL("https://api.twitter.com/oauth2/token")
-                .setOAuthAuthorizationURL("https://api.twitter.com/oauth/authorize")
-                .setOAuthAccessTokenURL("https://api.twitter.com/oauth/access_token")
-                .setRestBaseURL("https://api.twitter.com/1.1/");
-        
-        twitter = new TwitterFactory(cb.build()).getInstance();
-        
-    }
-         
     /**
-     * Mostrar la línea de tiempo de twitter. 
-     * @throws TwitterException TwitterException Clase propia de excepciones de Twitter. 
+     * Mostrar la línea de tiempo de twitter.
+     *
+     * @throws TwitterException TwitterException Clase propia de excepciones de
+     * Twitter.
      */
     public void mostrarLineaTiempo() throws TwitterException {
         List<Status> statuses = twitter.getHomeTimeline();
@@ -55,32 +55,36 @@ public class FuncionesTwitter {
                     + status.getText());
         }
     }
-    
+
     /**
      * Método para postear un twit.
-     * @throws TwitterException TwitterException Clase propia de excepciones de Twitter. 
+     *
+     * @throws TwitterException TwitterException Clase propia de excepciones de
+     * Twitter.
      */
     public void postearTuit() throws TwitterException {
         String respuesta = JOptionPane.showInputDialog("Introduce nuevo tuit.");
         Status status = twitter.updateStatus(respuesta);
         System.out.println("Has posteado con éxito [" + status.getText() + "].");
     }
-    
+
     /**
-     * Método para buscar un twit a través de un String. 
-     * @throws TwitterException TwitterException Clase propia de excepciones de Twitter. 
+     * Método para buscar un twit a través de un String.
+     *
+     * @throws TwitterException TwitterException Clase propia de excepciones de
+     * Twitter.
      */
     public void buscarTuit() throws TwitterException {
-        
+
         String resp = JOptionPane.showInputDialog("Introduce criterio de búsqueda.");
         Query miquery = new Query(resp);
         QueryResult result = twitter.search(miquery);
         List<Status> tweets = result.getTweets();
-        
+
         for (Status status : tweets) {
             System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
         }
-        
+
     }
-    
+
 }
