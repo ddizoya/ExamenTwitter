@@ -23,7 +23,6 @@ import twitter4j.conf.ConfigurationBuilder;
 public class FuncionesTwitter {
 
     public FuncionesTwitter() {
-        String fichero = "twitter4j.properties";
     }
 
     public FuncionesTwitter(Twitter twitter) {
@@ -35,12 +34,15 @@ public class FuncionesTwitter {
      */
     public Twitter twitter;
 
-    /**
-     * Método inicial para loguearse. Es necesario iniciarlo para que el código
-     * vaya.
+     /**
+     * Método inicial para cargar la configuración. Es necesario iniciarlo para que el código vaya.
      *
-     * @throws TwitterException Clase propia de excepciones de Twitter.
      */
+    public void cargarConfiguracion() {
+        twitter = new TwitterFactory().getInstance();
+    }
+
+  
     /**
      * Mostrar la línea de tiempo de twitter.
      *
