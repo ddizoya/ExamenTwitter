@@ -15,12 +15,12 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class ExamenTwitter {
 
-    /**
+    /** Main de la clase para testear que el código funcione.
      * @param args the command line arguments
      */
     public static void main(String[] args) throws TwitterException {
         FuncionesTwitter objetoDePrueba = new FuncionesTwitter();
-        //objetoDePrueba.ConfiguracionInicial();
+        
         objetoDePrueba.loguearse();
         objetoDePrueba.buscarTuit();
         objetoDePrueba.postearTuit();

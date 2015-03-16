@@ -22,9 +22,17 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class FuncionesTwitter {
     
+    /**
+     * Atributo twitter, para emplearlo en los métodos. 
+     */
     public Twitter twitter;
     
+    /**
+     * Método inicial para loguearse. Es necesario iniciarlo para que el código vaya.
+     * @throws TwitterException Clase propia de excepciones de Twitter. 
+     */
     public void loguearse() throws TwitterException {
+        
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setOAuthAuthenticationURL("https://api.twitter.com/oauth2/token")
                 .setOAuthAuthorizationURL("https://api.twitter.com/oauth/authorize")
@@ -34,20 +42,11 @@ public class FuncionesTwitter {
         twitter = new TwitterFactory(cb.build()).getInstance();
         
     }
-    
-    public void ConfiguracionInicial() {
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-        
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey("0PHckXrWZHkSEy90Bz5L3iSt5")
-                .setOAuthConsumerSecret("icwhQudxPi2pvDBTOctbY7XjqZ8SSvri2WQTmXQ9OlGgwsWbvp")
-                .setOAuthAccessToken("3071806397-KTOfFKLZIpzEPqX9rNJVdALRhdyyAD8ySHPU92E")
-                .setOAuthAccessTokenSecret("CaH64RTown2lt9Szwc0Js845NAoxm1tObi9KQ7q5GxpjI");
-        
-        twitter = new TwitterFactory(cb.build()).getInstance();
-        
-    }
-    
+         
+    /**
+     * Mostrar la línea de tiempo de twitter. 
+     * @throws TwitterException TwitterException Clase propia de excepciones de Twitter. 
+     */
     public void mostrarLineaTiempo() throws TwitterException {
         List<Status> statuses = twitter.getHomeTimeline();
         System.out.println("Mostrando los tuits de Inicio.");
@@ -57,12 +56,20 @@ public class FuncionesTwitter {
         }
     }
     
+    /**
+     * Método para postear un twit.
+     * @throws TwitterException TwitterException Clase propia de excepciones de Twitter. 
+     */
     public void postearTuit() throws TwitterException {
         String respuesta = JOptionPane.showInputDialog("Introduce nuevo tuit.");
         Status status = twitter.updateStatus(respuesta);
         System.out.println("Has posteado con éxito [" + status.getText() + "].");
     }
     
+    /**
+     * Método para buscar un twit a través de un String. 
+     * @throws TwitterException TwitterException Clase propia de excepciones de Twitter. 
+     */
     public void buscarTuit() throws TwitterException {
         
         String resp = JOptionPane.showInputDialog("Introduce criterio de búsqueda.");
